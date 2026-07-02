@@ -1,0 +1,1 @@
+Accessibility App mainly focus on making app accessible to everyone, for example even blind people can use the app using voice commands.And in this project we can have many such features, just give a look
