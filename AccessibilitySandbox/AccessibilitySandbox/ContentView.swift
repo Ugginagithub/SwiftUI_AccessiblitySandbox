@@ -24,20 +24,48 @@ struct ContentView: View {
     
     @State private var selectedPictures = Int.random(in: 0...3)
     
+    @State private var value = 10
+    
     var body: some View {
         
-        Button {
-            selectedPictures = Int.random(in: 0...3)
-        } label: {
-            Image(pictures[selectedPictures])
-                .resizable()
-                .scaledToFit()
-        }
-        .accessibilityElement(children: .ignore)
-        .accessibilityLabel(labels[selectedPictures])
+//        Button {
+//            selectedPictures = Int.random(in: 0...3)
+//        } label: {
+//            Image(pictures[selectedPictures])
+//                .resizable()
+//                .scaledToFit()
+//        }
+//        .accessibilityElement(children: .ignore)
+//        .accessibilityLabel(labels[selectedPictures])
         
         //MARK: Hiding and grouping accessiblity data
 //        Image(decorative: "character")
+        
+        //MARK: reading the values of accessibility
+        VStack{
+            Text("Value \(value)")
+            
+            Button("Increment") {
+                value += 1
+            }
+            
+            Button("Decrement") {
+                value -= 1
+            }
+        }
+        .accessibilityElement()
+        .accessibilityLabel("Value")
+        .accessibilityValue(String(value))
+        .accessibilityAdjustableAction{ direction in
+            switch direction {
+            case .increment:
+                value += 1
+            case .decrement:
+                value -= 1
+            default:
+                print("Not handled.")
+            }
+        }
     }
 }
 
